@@ -16,12 +16,17 @@
         /* Show it is fixed to the top */
         body {
           min-height: 75rem;
-          padding-top: 4.5rem;
         }
     </style>
   </head>
   <body>
-      
+
+
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.php">Home</a>
+    <a class="navbar-brand" href="form.php">Upload</a>
+  </nav>
+
       
     <main role="main" class="container">
       <div class="jumbotron">
@@ -32,46 +37,20 @@
               ?> Files Uploaded
           </h2>
         <p id="counter"></p>
+        <form>
+        <div class="switch">
+          <label>
+            <input id="toggleBtn" type="checkbox" onclick="toggle(this)">
+            Auto Re-load
+          </label>
+        </div>
+      </form>
       </div>
+     
     </main>
     
     
-    <script>
-    
-        let server = "https://ba0a92b556de4033bb81b78cc5537931.vfs.cloud9.us-west-2.amazonaws.com";
-        
-        function startTimer(){
-           let time = 5;//5 secs
-           let interval = setInterval(()=>{
-             time--;
-             
-             if(time === 0){
-               document.querySelector("#counter").innerHTML = `Refreshing`;
-               refresh();
-               time = 5;
-             }else{
-               document.querySelector("#counter").innerHTML = `Refreshing in ${time} seconds`;
-             }
-           }, 1000);
-        }
-        
-        async function refresh(){
-          console.log('refreshing');
-            let resp = await fetch(`${server}/state.json`);
-            if(resp.status === 200){
-              let state = await resp.json();
-              document.getElementById("result").innerHTML = state.num_uploads + " Files Uploaded"
-            }
-        }
-        
-        //startTimer();
-        // let source = new EventSource("emitter.php");
-        // source.onmessage = function(event) {
-        //   document.getElementById("result").innerHTML = event.data + " Files Uploaded";
-        //   console.log(event);
-        // };
-    </script>
-
+    <script src="main.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

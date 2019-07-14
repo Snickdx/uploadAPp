@@ -16,15 +16,26 @@
         /* Show it is fixed to the top */
         body {
           min-height: 75rem;
-          padding-top: 4.5rem;
         }
     </style>
   </head>
   <body>
- 
+        
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="index.php">Home</a>
+    <a class="navbar-brand" href="form.php">Upload</a>
+  </nav>
+
+
      <main role="main" class="container">
       <div class="jumbotron">
         <h1>Upload Form</h1>
+        <h2>
+          <?php 
+            if(isset($_GET['upload']))
+              echo 'Upload Successful!';
+          ?>
+        </h2>
         <form action="upload.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="exampleFormControlFile1">Upload File</label>
